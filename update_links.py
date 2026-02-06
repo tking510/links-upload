@@ -21,7 +21,8 @@ def fetch_sheet_data():
     try:
         response = requests.get(CSV_URL, timeout=30)
         response.raise_for_status()
-        return response.text
+        # バイト列をUTF-8でデコード
+        return response.content.decode('utf-8')
     except Exception as e:
         print(f"Error fetching data: {e}")
         return None
