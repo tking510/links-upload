@@ -12,7 +12,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
@@ -22,89 +22,160 @@
             max-width: 1400px;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
         
-        header {
+        .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
+            padding: 40px;
             text-align: center;
         }
         
-        h1 {
+        .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
         
-        .update-time {
-            font-size: 0.9em;
+        .last-update {
             opacity: 0.9;
+            font-size: 0.9em;
+            margin-top: 10px;
         }
         
-        .search-container {
-            padding: 20px 30px;
+        .controls {
+            padding: 30px;
             background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 2px solid #e9ecef;
         }
         
-        #searchInput {
+        .search-box {
             width: 100%;
-            padding: 12px 20px;
+            padding: 15px 20px;
             font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            transition: border-color 0.3s;
-        }
-        
-        #searchInput:focus {
+            border: 2px solid #667eea;
+            border-radius: 50px;
             outline: none;
-            border-color: #667eea;
+            transition: all 0.3s;
         }
         
-        .table-container {
-            overflow-x: auto;
+        .search-box:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        }
+        
+        .categories {
             padding: 20px 30px;
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .category-btn.active {
+            background: #764ba2;
+            color: white;
+            border-color: #764ba2;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .category-btn:hover .badge,
+        .category-btn.active .badge {
+            background: rgba(255,255,255,0.5);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .category-section {
+            margin-bottom: 40px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .category-section h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
         }
         
         thead {
-            background: #f8f9fa;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
         
         th {
-            padding: 15px 10px;
+            padding: 15px;
             text-align: left;
             font-weight: 600;
-            color: #333;
-            border-bottom: 2px solid #667eea;
-            white-space: nowrap;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
         }
         
         tr:hover {
-            background-color: #f5f5f5;
+            background: #f8f9fa;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
         }
         
         a {
             color: #667eea;
             text-decoration: none;
             transition: color 0.3s;
+            word-break: break-all;
         }
         
         a:hover {
@@ -114,1971 +185,1479 @@
         
         .no-results {
             text-align: center;
-            padding: 40px;
+            padding: 60px 20px;
             color: #999;
             font-size: 1.2em;
         }
         
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            color: #666;
-            font-size: 0.9em;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .controls {
+                padding: 20px;
+            }
+            
+            .categories {
+                padding: 15px 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <div class="header">
             <h1>📋 スロ天重要まとめシート</h1>
-            <p class="update-time">最終更新: 2026年02月06日 12:26:25</p>
-        </header>
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="🔍 検索...（名称、URL、カテゴリなど）">
+            <div class="last-update">最終更新: 2026年02月06日 12:40:57</div>
         </div>
         
-        <div class="table-container">
-            <table id="dataTable">
-                <thead>
-                    <tr>
-                        <th>名称</th>
-                        <th>URL</th>
-                        <th>ジャンル</th>
-                        <th>部署</th>
-                        <th></th>
-                        <th>名称</th>
-                        <th>URL</th>
-                        <th>ジャンル</th>
-                        <th>部署</th>
-                        <th></th>
-                        <th>名称</th>
-                        <th>URL</th>
-                        <th>ジャンル</th>
-                        <th>部署</th>
-                        <th></th>
-                        <th>名称</th>
-                        <th>URL</th>
-                        <th>ジャンル</th>
-                        <th>部署</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>管理画面BO</td>
-                        <td><a href="https://admin.sloten.io/#/login" target="_blank">https://admin.sloten.io/#/login</a></td>
-                        <td>BO</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>Affiliate業務内容</td>
-                        <td>Affiliate-スロット天国_業務マニュアル (1).pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>CS業務内容</td>
-                        <td>CSチーム_業務マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>CS</td>
-                        <td></td>
-                        <td>スロ天ガチャ</td>
-                        <td>https://lp.diamond-secret.club/Slotengacha/</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>シフト</td>
-                        <td>スタッフシフト表_完全版</td>
-                        <td>管理シート</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>AFF部門</td>
-                        <td>Affiliate-スロット天国</td>
-                        <td>シート</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>CS部門</td>
-                        <td>customersupport-スロット天国</td>
-                        <td>シート</td>
-                        <td>CS</td>
-                        <td></td>
-                        <td>スロ天ルーレット</td>
-                        <td>https://lp.diamond-secret.club/Slotenroulet/</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>公式サイト</td>
-                        <td><a href="https://sloten.io/" target="_blank">https://sloten.io/</a></td>
-                        <td>ページ</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>AFF管理シート使用方法</td>
-                        <td>AFF管理シート_使用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>プレイヤーチェック管理使用方法</td>
-                        <td>プレイヤーチェック管理ダッシュボード_使用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>CS</td>
-                        <td></td>
-                        <td>イメージ図</td>
-                        <td>リベート図.png</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>スロ天USPLP①（AFF用）</td>
-                        <td><a href="https://affiliate2.sloten.io/" target="_blank">https://affiliate2.sloten.io/</a></td>
-                        <td>ページ</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト管理画面ガイド</td>
-                        <td>アフィリエイト管理システム操作完全マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>プレイヤーチェック管理</td>
-                        <td>プレイヤーチェック管理</td>
-                        <td>シート</td>
-                        <td>CS</td>
-                        <td></td>
-                        <td>VIPテーブル</td>
-                        <td>VIPテーブル</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>開発リクエストテンプレ</td>
-                        <td>開発リクエスト用</td>
-                        <td>テンプレ</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>交渉メッセージ例</td>
-                        <td>アフィリエイト交渉</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>エラー事項記載シート</td>
-                        <td>スロット天国ゲームエラー用</td>
-                        <td>シート</td>
-                        <td>CS</td>
-                        <td></td>
-                        <td>アフィリエイトテーブル</td>
-                        <td>アフィリエイトテーブル</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>デザイン依頼</td>
-                        <td>デザイン依頼テンプレ</td>
-                        <td>テンプレ</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>想定Q&A</td>
-                        <td>AFF想定　Q&A</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>チャットウッド</td>
-                        <td>https://im.slot-h.com/app/accounts/3/dashboard</td>
-                        <td>BO</td>
-                        <td>CS</td>
-                        <td></td>
-                        <td>一般規約</td>
-                        <td>スロット天国 一般利用規約 (ドラフト)</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>エラー一覧</td>
-                        <td>エラー依頼テンプレ</td>
-                        <td>テンプレ</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>法改正稼働AFF</td>
-                        <td>法改正後稼働AFF</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>ペイメント業務内容</td>
-                        <td>ペイメント部門_業務マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>プロモ規約</td>
-                        <td>スロット天国 プロモーション利用規約 (ドラフト)</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>テンプレ集</td>
-                        <td>依頼テンプレート統合ガイド.pdf</td>
-                        <td>テンプレ</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト交渉マニュアル</td>
-                        <td>アフィリエイト交渉マニュアル_完全版.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>Payment部門</td>
-                        <td>Payment-スロット天国</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>プライバシーポリシー</td>
-                        <td>スロ天　プライバシーポリシー（ドラフト）</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>スロ天操作ガイド</td>
-                        <td>スロット天国_(sloten.io)_利用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト一覧</td>
-                        <td>アフィリエイト交渉対象一覧</td>
-                        <td>シート</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>リスク管理シート</td>
-                        <td>BigWin管理シート</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>責任あるゲーミング</td>
-                        <td>スロ天　責任あるゲーミング（ドラフト）</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>スロ天管理画面ガイド</td>
-                        <td>Sloten管理画面操作マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト管理シート</td>
-                        <td>AFF 管理シート </td>
-                        <td>シート</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>BIGシート使用方法</td>
-                        <td>BigWin管理シート_使用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>SNS運用資料</td>
-                        <td>SNS運用方法(スロット天国)</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>ポイント追加マニュアル</td>
-                        <td>SLOTENシステム完全マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>特別報酬の場合</td>
-                        <td>アフィリエイト経験情報収集マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>PayPayマニュアル</td>
-                        <td>PayPay決済システム_完全マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>公式SNS投稿スケジュールスロット天国</td>
-                        <td>公式SNS投稿スケジュールスロット天国</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>Lottoジャックポット</td>
-                        <td>ロト抽選ジャックポット機能｜スタッフ説明資料.pdf</td>
-                        <td>資料</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト制度</td>
-                        <td>アフィリエイト制度_活用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>OKJへの振込手順</td>
-                        <td>OKJ銀行振込マニュアル_-_安全な入金のための完全ガイド.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>藤井さんから共有があったSNS管理シート</td>
-                        <td>スロ天SNS管理表</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>DISCORD</td>
-                        <td><a href="https://discord.gg/7hrDaJfw" target="_blank">https://discord.gg/7hrDaJfw</a></td>
-                        <td></td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト交渉マニュアル</td>
-                        <td>アフィリエイト交渉・活用マニュアル統合版.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>セトルルール</td>
-                        <td>セトルルール</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>ボーナス期待値計算ツール</td>
-                        <td>ボーナス期待値計算ツール </td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>LINE</td>
-                        <td><a href="https://lin.ee/jTDURj3" target="_blank">https://lin.ee/jTDURj3</a></td>
-                        <td></td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイター向け営業資料</td>
-                        <td>スロット天国_アフィリエイトプログラム (3).pdf</td>
-                        <td>資料</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>入金フロー</td>
-                        <td>入金フローまとめ（完全版）.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>SLOTEN　スロテン　ＱＡ</td>
-                        <td>SLOTEN　スロテン　ＱＡ</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>TELEGRAM</td>
-                        <td><a href="https://t.me/slotheavenbot" target="_blank">https://t.me/slotheavenbot</a></td>
-                        <td></td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>アフィリエイト管理画面</td>
-                        <td>https://asp.sloten.io/login?redirect=/home</td>
-                        <td>ページ</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>EC発行方法</td>
-                        <td>EC決済発行方法マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>QAシート</td>
-                        <td>SLOTEN　スロテン　ＱＡ</td>
-                        <td>シート</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>ライセンス</td>
-                        <td>SMART BIZ TECHNOLOGY INC SUB-LICENSE 2024.pdf</td>
-                        <td></td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>AFFトークスクリプト</td>
-                        <td>アフィリエイト営業トークスクリプト_マニュアル (2).pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>ポイントBO</td>
-                        <td>https://add.sloten.io/</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>DRIVE</td>
-                        <td>素材</td>
-                        <td>管理シート</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>ドリームポット説明</td>
-                        <td><a href="https://lottojackpot-jkhjm2sm.manus.space" target="_blank">https://lottojackpot-jkhjm2sm.manus.space</a></td>
-                        <td>資料</td>
-                        <td>全部署</td>
-                        <td></td>
-                        <td>競馬インフルエンサーリスト</td>
-                        <td>競馬系インフルエンサーデータベース_60名</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>EC着金確認</td>
-                        <td>スロ天ＥＣ着金</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>他社報酬調査結果</td>
-                        <td>カジノアフィリエイト条件調査_分析レポート.pdf</td>
-                        <td>調査</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>オペレーション業務内容</td>
-                        <td>オペレーション部門_業務マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>競艇インフルエンサーリスト</td>
-                        <td>競艇系インフルエンサーデータベース_50名</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>PayPay着金確認</td>
-                        <td>スロ天Paypay</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>他社リベート調査結果</td>
-                        <td>他社リベート調査結果</td>
-                        <td>調査</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>operation部門</td>
-                        <td>オペレーション用-スロット天国</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>ポーカーインフルエンサー</td>
-                        <td>ポーカーインフルエンサー一覧</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>銀行着金確認</td>
-                        <td>個人着金確認シート</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>PSP比較</td>
-                        <td>PSP比較</td>
-                        <td>調査</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>KPI</td>
-                        <td>スロ天KPIシート</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>宝くじインフルエンサーリスト</td>
-                        <td>宝くじインフルエンサー</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>入出金</td>
-                        <td>スロ天_入出金の流れ（まとめ）.pdf</td>
-                        <td>マニュアル</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>チャットBOT内容</td>
-                        <td>スロット天国チャットbot_登録ガイド.pdf</td>
-                        <td>資料</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>LP①計測シート</td>
-                        <td>SMS-LP①計測</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>パチンコインフルエンサーリスト</td>
-                        <td>パチンコ・パチスロインフルエンサー一覧</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>ペイメントコスト</td>
-                        <td>ペイメントコストシート</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>プロバイダーデータ項目</td>
-                        <td>プロバイダーからもらえる項目一覧</td>
-                        <td>資料</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>トーナメント</td>
-                        <td>トーナメント</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>麻雀インフルエンサー</td>
-                        <td>麻雀インフルエンサー一覧</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>ペイメントフィー</td>
-                        <td>スロット天国通信費管理</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>スロ天LP①計測ツール入りテスト</td>
-                        <td>https://lp.diamond-secret.club/SLOTENTEST/</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>SNS</td>
-                        <td>公式SNS投稿スケジュールスロット天国</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>カジノインフルエンサー</td>
-                        <td>カジノインフルエンサー一覧</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>コンビニ払いのご利用方法 (2).pdf</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>ドリームポットLP</td>
-                        <td>https://lp.diamond-secret.club/slotentakarakuji/</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>メルマガ</td>
-                        <td>メルマガ</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>FXインフルエンサー</td>
-                        <td>FX系インフルエンサーデータベース</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>PayPay送金マニュアル (1).pdf</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>ドリームポットマイページ</td>
-                        <td>https://lp.diamond-secret.club/takarakuzimypage/</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>トーナメント企画提案</td>
-                        <td>トーナメント企画提案.pdf</td>
-                        <td>テンプレ</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>バイナリーインフルエンサー</td>
-                        <td>バイナリーオプション系インフルエンサーデータベース</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>KYC撮影</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>コール入力システム</td>
-                        <td>https://script.google.com/macros/s/AKfycbzi6_9-f5aIk1pKxwsQvH-CZ26wLs7GEruchrCIppiiXxRzIwRmgTIcGgSE0PctoksO/exec</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>SocialDog使用マニュアル</td>
-                        <td>SocialDog_徹底活用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>仮想通貨インフルエンサー</td>
-                        <td>仮想通貨系インフルエンサーデータベース</td>
-                        <td>リスト</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>ATM振込操作マニュアル (2).pdf</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>コールシステムadmin</td>
-                        <td>https://script.google.com/macros/s/AKfycbzi6_9-f5aIk1pKxwsQvH-CZ26wLs7GEruchrCIppiiXxRzIwRmgTIcGgSE0PctoksO/exec?page=admin</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>プロモ作成例</td>
-                        <td>ボーナス作成の実践例.pdf</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>アフィリエイトとは</td>
-                        <td>アフィリエイトとは</td>
-                        <td>資料</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>支払い方法管理シート</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>経費</td>
-                        <td>スロット天国　経費</td>
-                        <td>シート</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>メルマガシート使用方法</td>
-                        <td>メルマガ管理ダッシュボード_使用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>ゲーミング未経験用マニュアル</td>
-                        <td>ゲーミングアフィリエイト参入マニュアル (1).pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>ロジック</td>
-                        <td>ロジック</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>トーナメントシート使用方法</td>
-                        <td>トーナメント管理ダッシュボード_使用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>ゲーミング未経験用マニュアル</td>
-                        <td>ゲーミング未経験者</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>入出金フロー</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>人件費</td>
-                        <td>スロット天国給料計算</td>
-                        <td>シート</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>SMS計測シート</td>
-                        <td>SMS送信管理スロット天国</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>ゲーミング経験者用マニュアル</td>
-                        <td>ゲーミングアフィリエイトSNSマニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td>https://docs.google.com/spreadsheets/d/1pYIWw-irXlN__nVfeJ3pK62LAPjmWLTBUnGvJmfa370/edit?usp=sharingg</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMS-LP1計測方法</td>
-                        <td>SMS-LP①計測使用方法</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>ゲーミング経験者用マニュアル</td>
-                        <td>ゲーミング経験者</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td>入出金集計BO</td>
-                        <td>入金出金集計BO</td>
-                        <td>シート</td>
-                        <td>ペイメント</td>
-                        <td></td>
-                        <td>テレグラムリッチメニュー装填用</td>
-                        <td>Telegramリッチメニュースロ天</td>
-                        <td>シート</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>SMS-LP1計測方法</td>
-                        <td>SMS-LP①計測_使用マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>初心者用AFFマニュアル</td>
-                        <td>初心者向けアフィリエイト副業マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>ボーナス期待値計算ツール  複製してお使いください</td>
-                        <td>ボーナス期待値計算ツール  複製してお使いください</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>Laffic番号別送信方法</td>
-                        <td>Laffic番号別送信方法</td>
-                        <td>マニュアル</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>初心者用AFFマニュアル</td>
-                        <td>初心者歓迎！スマホで始めるアフィリエイト副業マニュアル_br_対象：アフィリエイト未経験者.pdf</td>
-                        <td>マニュアル</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>よくある質問</td>
-                        <td>スロ天　よくある質問</td>
-                        <td>案</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>管理シート</td>
-                        <td><a href="https://lp.diamond-secret.club/reports/secure/click_report_SLOTENTEST.php" target="_blank">https://lp.diamond-secret.club/reports/secure/click_report_SLOTENTEST.php</a></td>
-                        <td>管理シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>必達管理</td>
-                        <td>AFF必達スロ天</td>
-                        <td>シート</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>SNSスケジュール</td>
-                        <td>公式SNS投稿スケジュールスロット天国</td>
-                        <td></td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>X計測用</td>
-                        <td><a href="https://millionheaven.site/" target="_blank">https://millionheaven.site/</a></td>
-                        <td>LP</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>DSCユーザーアフィリ誘導</td>
-                        <td>既存客アフィリレポート</td>
-                        <td>シート</td>
-                        <td>AFF</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>宝くじシステム概要</td>
-                        <td>宝くじジャックポットシステム概要.pdf</td>
-                        <td>依頼</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>TIKTOK計測用</td>
-                        <td>スロット天国TIKTOK計測用</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>AFF管理画面</td>
-                        <td>https://casino-affiliate-pulse.lovable.app/</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>他社アフィリエイト報酬形態</td>
-                        <td>カジノアフィリエイト報酬体系他社調査結果</td>
-                        <td>調査</td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>TIKTOK計測用</td>
-                        <td><a href="https://millionheaven.space" target="_blank">https://millionheaven.space</a></td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>VIP部署業務内容</td>
-                        <td>VIP-スロット天国_業務マニュアル.pdf</td>
-                        <td>マニュアル</td>
-                        <td>VIP</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>カスタマージャーニー</td>
-                        <td>カスタマージャーニー</td>
-                        <td></td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>FBアカウント一覧</td>
-                        <td>FB10.xlsx</td>
-                        <td>シート</td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>VIP部門</td>
-                        <td>VIP-スロット天国</td>
-                        <td>シート</td>
-                        <td>VIP</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>テレグラ要約BOT</td>
-                        <td>マレーシアテレグラムまとめ</td>
-                        <td></td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>メーラー</td>
-                        <td><a href="https://fviainboxes.com/" target="_blank">https://fviainboxes.com/</a></td>
-                        <td></td>
-                        <td>オペ</td>
-                        <td></td>
-                        <td>アップセルトークスクリプト</td>
-                        <td>目的別アップセルトークスクリプト（スロ天_完全版）.pdf</td>
-                        <td>マニュアル</td>
-                        <td>VIP</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>テレグラ要約BOT</td>
-                        <td>メモテレグラムまとめ</td>
-                        <td></td>
-                        <td>admin</td>
-                    </tr>
-                    <tr>
-                        <td>LP管理</td>
-                        <td>LP管理</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>電話リスト</td>
-                        <td>電話営業リスト管理ツール</td>
-                        <td>シート</td>
-                        <td>VIP</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>タスクまとめ</td>
-                        <td>https://docs.google.com/spreadsheets/d/1ZNo_1jd6EYX6O1cccQ9sa3A2xJwInIMU5QinvOUvk2E/edit?usp=sharing</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>CLOUD</td>
-                        <td><a href="https://panel.cloudzy.com/dashboard" target="_blank">https://panel.cloudzy.com/dashboard</a></td>
-                        <td>koni.tanaka@gmail.com
-Sloten1234!</td>
-                        <td></td>
-                        <td></td>
-                        <td>VIP・アップセル部門</td>
-                        <td>VIP-スロット天国</td>
-                        <td>シート</td>
-                        <td>VIP</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><a href="https://lptracker-8dhyg4ut.manus.space" target="_blank">https://lptracker-8dhyg4ut.manus.space</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>VIPチェック管理</td>
-                        <td>VIP判定システム</td>
-                        <td>シート</td>
-                        <td>VIP</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>ダッシュボード</td>
-                        <td><a href="https://sloten-dashboard.manus.space/" target="_blank">https://sloten-dashboard.manus.space/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>カスタマージャーニー管理マニュアル_最終版.pdf</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>漫画</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>リンク集</td>
-                        <td><a href="https://sloten-link.manus.space" target="_blank">https://sloten-link.manus.space</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>メルマガ</td>
-                        <td>メール</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><a href="https://sloten-aff.xyz" target="_blank">https://sloten-aff.xyz</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><a href="https://sloten-manga.xyz" target="_blank">https://sloten-manga.xyz</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>ヘブンズショット</td>
-                        <td>ヘブンズショット</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMS送信</td>
-                        <td>SMS送信リスト</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMS送信本屋</td>
-                        <td>SMS送信本屋</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>バカラチャレンジ</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1qGd0hneNNqNNZCNMXbO89wYusHIbB0nnNqZNvjsqnbY/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1qGd0hneNNqNNZCNMXbO89wYusHIbB0nnNqZNvjsqnbY/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>みんなの時間割</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1Qh4xxb6pIXP1TMdRY24zcJcjDts-2MFgXcTYfKjHNg8/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1Qh4xxb6pIXP1TMdRY24zcJcjDts-2MFgXcTYfKjHNg8/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>無料ゲームサイト</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/14nWspAUsHzmCewIySecFwxAROP2xpy56zoVChBRJNYw/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/14nWspAUsHzmCewIySecFwxAROP2xpy56zoVChBRJNYw/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>設置状況</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1_Wfe1tqWIyuLWYZ73QQPMYeDL8FInQTWCAvsn0ptogA/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1_Wfe1tqWIyuLWYZ73QQPMYeDL8FInQTWCAvsn0ptogA/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMS分析</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1Z-fVjbHWAUXLgajlDba1Pm1fU6Ble52ddbVLBcxFEcU/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1Z-fVjbHWAUXLgajlDba1Pm1fU6Ble52ddbVLBcxFEcU/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMSデータ</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1o58Zmm6dhcFbLRfLZajLjsWbeE57DOQqY5ncH1FunUs/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1o58Zmm6dhcFbLRfLZajLjsWbeE57DOQqY5ncH1FunUs/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>連勝王連敗王</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1tmBj1U_pclbuIFk1lQz8cSTAH0aPOPW9G92j4Mo5tq8/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1tmBj1U_pclbuIFk1lQz8cSTAH0aPOPW9G92j4Mo5tq8/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>DC/ACE</td>
-                        <td><a href="https://share.dc-ace.com/login?redirect=/folder/DC%2520Lobby/Promo%2520Package/" target="_blank">https://share.dc-ace.com/login?redirect=/folder/DC%2520Lobby/Promo%2520Package/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>ボーナスコード管理</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1c58Oz88Y-8Yg8Xz4yqQYk8KgFIjufZefbC94krz3dwo/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1c58Oz88Y-8Yg8Xz4yqQYk8KgFIjufZefbC94krz3dwo/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>CSVセグメントツール</td>
-                        <td><a href="https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/" target="_blank">https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMS送信</td>
-                        <td>SMSデータ</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>カレンダー</td>
-                        <td><a href="https://shared-calendar-app-iota.vercel.app/" target="_blank">https://shared-calendar-app-iota.vercel.app/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>メール用ＣＳＶ算出ツール</td>
-                        <td><a href="https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/" target="_blank">https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SEOツール</td>
-                        <td><a href="https://nexus-seo-u5uq936q.manus.space/" target="_blank">https://nexus-seo-u5uq936q.manus.space/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>スロ天ＣＳＶデータ</td>
-                        <td><a href="https://userdash-eanx4o83.manus.space/?code=C9CEZYMehvBKv3HUVMoNGw" target="_blank">https://userdash-eanx4o83.manus.space/?code=C9CEZYMehvBKv3HUVMoNGw</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>世界の大会</td>
-                        <td><a href="https://gamblingtourn-abc2g3fa.manus.space/" target="_blank">https://gamblingtourn-abc2g3fa.manus.space/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>全事業MANUS</td>
-                        <td><a href="https://manus.im/app/gSl7xKgVa6DexT3bvJsx0J" target="_blank">https://manus.im/app/gSl7xKgVa6DexT3bvJsx0J</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>期待値計算ツール</td>
-                        <td><a href="https://expvaluecalc-krrpfvay.manus.space/" target="_blank">https://expvaluecalc-krrpfvay.manus.space/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>クローキングツール</td>
-                        <td><a href="https://upapp.io/" target="_blank">https://upapp.io/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>プロモシート</td>
-                        <td><a href="https://docs.google.com/spreadsheets/d/1TS--7Ia1Ju9bgZGY07fOzhef_2-ifdQo_El-MNsSqF0/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1TS--7Ia1Ju9bgZGY07fOzhef_2-ifdQo_El-MNsSqF0/edit?usp=sharing</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>SMS,メールチェッカー</td>
-                        <td><a href="https://smsmailtool.slomanga.com/" target="_blank">https://smsmailtool.slomanga.com/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>カスタマージャーニー分析</td>
-                        <td><a href="https://ftdchecher.slomanga.com/" target="_blank">https://ftdchecher.slomanga.com/</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>リストクリーンナップ済</td>
-                        <td><a href="https://t.me/HLR_Lookup_bot" target="_blank">https://t.me/HLR_Lookup_bot</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Botfather</td>
-                        <td><a href="https://t.me/BotFather" target="_blank">https://t.me/BotFather</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="noResults" class="no-results" style="display: none;">
-                検索結果が見つかりませんでした
+        <div class="controls">
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 検索...（名称、URL、部署など）">
+        </div>
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all">
+                すべて <span class="badge">176</span>
+            </button>
+            
+            <button class="category-btn" data-category="BO">
+                BO <span class="badge">2</span>
+            </button>
+        
+            <button class="category-btn" data-category="LP">
+                LP <span class="badge">1</span>
+            </button>
+        
+            <button class="category-btn" data-category="koni.tanaka@gmail.com
+Sloten1234!">
+                koni.tanaka@gmail.com
+Sloten1234! <span class="badge">1</span>
+            </button>
+        
+            <button class="category-btn" data-category="その他">
+                その他 <span class="badge">43</span>
+            </button>
+        
+            <button class="category-btn" data-category="シート">
+                シート <span class="badge">35</span>
+            </button>
+        
+            <button class="category-btn" data-category="テンプレ">
+                テンプレ <span class="badge">5</span>
+            </button>
+        
+            <button class="category-btn" data-category="ページ">
+                ページ <span class="badge">3</span>
+            </button>
+        
+            <button class="category-btn" data-category="マニュアル">
+                マニュアル <span class="badge">41</span>
+            </button>
+        
+            <button class="category-btn" data-category="リスト">
+                リスト <span class="badge">10</span>
+            </button>
+        
+            <button class="category-btn" data-category="依頼">
+                依頼 <span class="badge">1</span>
+            </button>
+        
+            <button class="category-btn" data-category="案">
+                案 <span class="badge">21</span>
+            </button>
+        
+            <button class="category-btn" data-category="管理シート">
+                管理シート <span class="badge">3</span>
+            </button>
+        
+            <button class="category-btn" data-category="調査">
+                調査 <span class="badge">4</span>
+            </button>
+        
+            <button class="category-btn" data-category="資料">
+                資料 <span class="badge">6</span>
+            </button>
+        
+        </div>
+        
+        <div class="content" id="content">
+            
+            <div class="category-section" id="category-BO">
+                <h2>📁 BO</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>管理画面BO</td>
+                    <td><a href="https://admin.sloten.io/#/login" target="_blank">https://admin.sloten.io/#/login</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>チャットウッド</td>
+                    <td><a href="https://im.slot-h.com/app/accounts/3/dashboard" target="_blank">https://im.slot-h.com/app/accounts/3/dashboard</a></td>
+                    <td>CS</td>
+                </tr>
+            
+                    </tbody>
+                </table>
             </div>
-        </div>
         
-        <footer>
-            <p>自動更新システム | 毎日更新</p>
-            <p><a href="https://docs.google.com/spreadsheets/d/1sId2LudYD-AwjE2BQdYMdMin4p2gV_sOIWv1rTFnAu0/edit" target="_blank">元のスプレッドシートを開く</a></p>
-        </footer>
+            <div class="category-section" id="category-LP">
+                <h2>📁 LP</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>X計測用</td>
+                    <td><a href="https://millionheaven.site/" target="_blank">https://millionheaven.site/</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-koni.tanaka@gmail.com
+Sloten1234!">
+                <h2>📁 koni.tanaka@gmail.com
+Sloten1234!</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>CLOUD</td>
+                    <td><a href="https://panel.cloudzy.com/dashboard" target="_blank">https://panel.cloudzy.com/dashboard</a></td>
+                    <td></td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-その他">
+                <h2>📁 その他</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>DISCORD</td>
+                    <td><a href="https://discord.gg/7hrDaJfw" target="_blank">https://discord.gg/7hrDaJfw</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>LINE</td>
+                    <td><a href="https://lin.ee/jTDURj3" target="_blank">https://lin.ee/jTDURj3</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>TELEGRAM</td>
+                    <td><a href="https://t.me/slotheavenbot" target="_blank">https://t.me/slotheavenbot</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>ライセンス</td>
+                    <td><a href="SMART BIZ TECHNOLOGY INC SUB-LICENSE 2024.pdf" target="_blank">SMART BIZ TECHNOLOGY INC SUB-LICENSE 2024.pdf</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>SNSスケジュール</td>
+                    <td><a href="公式SNS投稿スケジュールスロット天国" target="_blank">公式SNS投稿スケジュールスロット天国</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>AFF管理画面</td>
+                    <td><a href="https://casino-affiliate-pulse.lovable.app/" target="_blank">https://casino-affiliate-pulse.lovable.app/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>カスタマージャーニー</td>
+                    <td><a href="カスタマージャーニー" target="_blank">カスタマージャーニー</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>テレグラ要約BOT</td>
+                    <td><a href="マレーシアテレグラムまとめ" target="_blank">マレーシアテレグラムまとめ</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>メーラー</td>
+                    <td><a href="https://fviainboxes.com/" target="_blank">https://fviainboxes.com/</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>テレグラ要約BOT</td>
+                    <td><a href="メモテレグラムまとめ" target="_blank">メモテレグラムまとめ</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>LP管理</td>
+                    <td><a href="LP管理" target="_blank">LP管理</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>タスクまとめ</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1ZNo_1jd6EYX6O1cccQ9sa3A2xJwInIMU5QinvOUvk2E/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1ZNo_1jd6EYX6O1cccQ9sa3A2xJwInIMU5QinvOUvk2E/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>ダッシュボード</td>
+                    <td><a href="https://sloten-dashboard.manus.space/" target="_blank">https://sloten-dashboard.manus.space/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>漫画</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>リンク集</td>
+                    <td><a href="https://sloten-link.manus.space" target="_blank">https://sloten-link.manus.space</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>メルマガ</td>
+                    <td><a href="メール" target="_blank">メール</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>ヘブンズショット</td>
+                    <td><a href="ヘブンズショット" target="_blank">ヘブンズショット</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SMS送信</td>
+                    <td><a href="SMS送信リスト" target="_blank">SMS送信リスト</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SMS送信本屋</td>
+                    <td><a href="SMS送信本屋" target="_blank">SMS送信本屋</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>バカラチャレンジ</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1qGd0hneNNqNNZCNMXbO89wYusHIbB0nnNqZNvjsqnbY/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1qGd0hneNNqNNZCNMXbO89wYusHIbB0nnNqZNvjsqnbY/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>みんなの時間割</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1Qh4xxb6pIXP1TMdRY24zcJcjDts-2MFgXcTYfKjHNg8/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1Qh4xxb6pIXP1TMdRY24zcJcjDts-2MFgXcTYfKjHNg8/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>無料ゲームサイト</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/14nWspAUsHzmCewIySecFwxAROP2xpy56zoVChBRJNYw/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/14nWspAUsHzmCewIySecFwxAROP2xpy56zoVChBRJNYw/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>設置状況</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1_Wfe1tqWIyuLWYZ73QQPMYeDL8FInQTWCAvsn0ptogA/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1_Wfe1tqWIyuLWYZ73QQPMYeDL8FInQTWCAvsn0ptogA/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SMS分析</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1Z-fVjbHWAUXLgajlDba1Pm1fU6Ble52ddbVLBcxFEcU/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1Z-fVjbHWAUXLgajlDba1Pm1fU6Ble52ddbVLBcxFEcU/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SMSデータ</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1o58Zmm6dhcFbLRfLZajLjsWbeE57DOQqY5ncH1FunUs/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1o58Zmm6dhcFbLRfLZajLjsWbeE57DOQqY5ncH1FunUs/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>連勝王連敗王</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1tmBj1U_pclbuIFk1lQz8cSTAH0aPOPW9G92j4Mo5tq8/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1tmBj1U_pclbuIFk1lQz8cSTAH0aPOPW9G92j4Mo5tq8/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>DC/ACE</td>
+                    <td><a href="https://share.dc-ace.com/login?redirect=/folder/DC%2520Lobby/Promo%2520Package/" target="_blank">https://share.dc-ace.com/login?redirect=/folder/DC%2520Lobby/Promo%2520Package/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>ボーナスコード管理</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1c58Oz88Y-8Yg8Xz4yqQYk8KgFIjufZefbC94krz3dwo/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1c58Oz88Y-8Yg8Xz4yqQYk8KgFIjufZefbC94krz3dwo/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>CSVセグメントツール</td>
+                    <td><a href="https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/" target="_blank">https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SMS送信</td>
+                    <td><a href="SMSデータ" target="_blank">SMSデータ</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>カレンダー</td>
+                    <td><a href="https://shared-calendar-app-iota.vercel.app/" target="_blank">https://shared-calendar-app-iota.vercel.app/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>メール用ＣＳＶ算出ツール</td>
+                    <td><a href="https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/" target="_blank">https://crm-segmentation-tool-gnwlkpueqvcdgapck3uv8z.streamlit.app/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SEOツール</td>
+                    <td><a href="https://nexus-seo-u5uq936q.manus.space/" target="_blank">https://nexus-seo-u5uq936q.manus.space/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>スロ天ＣＳＶデータ</td>
+                    <td><a href="https://userdash-eanx4o83.manus.space/?code=C9CEZYMehvBKv3HUVMoNGw" target="_blank">https://userdash-eanx4o83.manus.space/?code=C9CEZYMehvBKv3HUVMoNGw</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>世界の大会</td>
+                    <td><a href="https://gamblingtourn-abc2g3fa.manus.space/" target="_blank">https://gamblingtourn-abc2g3fa.manus.space/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>全事業MANUS</td>
+                    <td><a href="https://manus.im/app/gSl7xKgVa6DexT3bvJsx0J" target="_blank">https://manus.im/app/gSl7xKgVa6DexT3bvJsx0J</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>期待値計算ツール</td>
+                    <td><a href="https://expvaluecalc-krrpfvay.manus.space/" target="_blank">https://expvaluecalc-krrpfvay.manus.space/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>クローキングツール</td>
+                    <td><a href="https://upapp.io/" target="_blank">https://upapp.io/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>プロモシート</td>
+                    <td><a href="https://docs.google.com/spreadsheets/d/1TS--7Ia1Ju9bgZGY07fOzhef_2-ifdQo_El-MNsSqF0/edit?usp=sharing" target="_blank">https://docs.google.com/spreadsheets/d/1TS--7Ia1Ju9bgZGY07fOzhef_2-ifdQo_El-MNsSqF0/edit?usp=sharing</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>SMS,メールチェッカー</td>
+                    <td><a href="https://smsmailtool.slomanga.com/" target="_blank">https://smsmailtool.slomanga.com/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>カスタマージャーニー分析</td>
+                    <td><a href="https://ftdchecher.slomanga.com/" target="_blank">https://ftdchecher.slomanga.com/</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>リストクリーンナップ済</td>
+                    <td><a href="https://t.me/HLR_Lookup_bot" target="_blank">https://t.me/HLR_Lookup_bot</a></td>
+                    <td></td>
+                </tr>
+            
+                <tr>
+                    <td>Botfather</td>
+                    <td><a href="https://t.me/BotFather" target="_blank">https://t.me/BotFather</a></td>
+                    <td></td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-シート">
+                <h2>📁 シート</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>AFF部門</td>
+                    <td><a href="Affiliate-スロット天国" target="_blank">Affiliate-スロット天国</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>CS部門</td>
+                    <td><a href="customersupport-スロット天国" target="_blank">customersupport-スロット天国</a></td>
+                    <td>CS</td>
+                </tr>
+            
+                <tr>
+                    <td>プレイヤーチェック管理</td>
+                    <td><a href="プレイヤーチェック管理" target="_blank">プレイヤーチェック管理</a></td>
+                    <td>CS</td>
+                </tr>
+            
+                <tr>
+                    <td>エラー事項記載シート</td>
+                    <td><a href="スロット天国ゲームエラー用" target="_blank">スロット天国ゲームエラー用</a></td>
+                    <td>CS</td>
+                </tr>
+            
+                <tr>
+                    <td>Payment部門</td>
+                    <td><a href="Payment-スロット天国" target="_blank">Payment-スロット天国</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト一覧</td>
+                    <td><a href="アフィリエイト交渉対象一覧" target="_blank">アフィリエイト交渉対象一覧</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>リスク管理シート</td>
+                    <td><a href="BigWin管理シート" target="_blank">BigWin管理シート</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト管理シート</td>
+                    <td><a href="AFF 管理シート" target="_blank">AFF 管理シート</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>QAシート</td>
+                    <td><a href="SLOTEN　スロテン　ＱＡ" target="_blank">SLOTEN　スロテン　ＱＡ</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>EC着金確認</td>
+                    <td><a href="スロ天ＥＣ着金" target="_blank">スロ天ＥＣ着金</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>PayPay着金確認</td>
+                    <td><a href="スロ天Paypay" target="_blank">スロ天Paypay</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>operation部門</td>
+                    <td><a href="オペレーション用-スロット天国" target="_blank">オペレーション用-スロット天国</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>銀行着金確認</td>
+                    <td><a href="個人着金確認シート" target="_blank">個人着金確認シート</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>KPI</td>
+                    <td><a href="スロ天KPIシート" target="_blank">スロ天KPIシート</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>LP①計測シート</td>
+                    <td><a href="SMS-LP①計測" target="_blank">SMS-LP①計測</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>ペイメントコスト</td>
+                    <td><a href="ペイメントコストシート" target="_blank">ペイメントコストシート</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>トーナメント</td>
+                    <td><a href="トーナメント" target="_blank">トーナメント</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>ペイメントフィー</td>
+                    <td><a href="スロット天国通信費管理" target="_blank">スロット天国通信費管理</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>SNS</td>
+                    <td><a href="公式SNS投稿スケジュールスロット天国" target="_blank">公式SNS投稿スケジュールスロット天国</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>メルマガ</td>
+                    <td><a href="メルマガ" target="_blank">メルマガ</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>経費</td>
+                    <td><a href="スロット天国　経費" target="_blank">スロット天国　経費</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>ロジック</td>
+                    <td><a href="ロジック" target="_blank">ロジック</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>人件費</td>
+                    <td><a href="スロット天国給料計算" target="_blank">スロット天国給料計算</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>SMS計測シート</td>
+                    <td><a href="SMS送信管理スロット天国" target="_blank">SMS送信管理スロット天国</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>入出金集計BO</td>
+                    <td><a href="入金出金集計BO" target="_blank">入金出金集計BO</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>テレグラムリッチメニュー装填用</td>
+                    <td><a href="Telegramリッチメニュースロ天" target="_blank">Telegramリッチメニュースロ天</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>必達管理</td>
+                    <td><a href="AFF必達スロ天" target="_blank">AFF必達スロ天</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>DSCユーザーアフィリ誘導</td>
+                    <td><a href="既存客アフィリレポート" target="_blank">既存客アフィリレポート</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>TIKTOK計測用</td>
+                    <td><a href="スロット天国TIKTOK計測用" target="_blank">スロット天国TIKTOK計測用</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>TIKTOK計測用</td>
+                    <td><a href="https://millionheaven.space" target="_blank">https://millionheaven.space</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>FBアカウント一覧</td>
+                    <td><a href="FB10.xlsx" target="_blank">FB10.xlsx</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>VIP部門</td>
+                    <td><a href="VIP-スロット天国" target="_blank">VIP-スロット天国</a></td>
+                    <td>VIP</td>
+                </tr>
+            
+                <tr>
+                    <td>電話リスト</td>
+                    <td><a href="電話営業リスト管理ツール" target="_blank">電話営業リスト管理ツール</a></td>
+                    <td>VIP</td>
+                </tr>
+            
+                <tr>
+                    <td>VIP・アップセル部門</td>
+                    <td><a href="VIP-スロット天国" target="_blank">VIP-スロット天国</a></td>
+                    <td>VIP</td>
+                </tr>
+            
+                <tr>
+                    <td>VIPチェック管理</td>
+                    <td><a href="VIP判定システム" target="_blank">VIP判定システム</a></td>
+                    <td>VIP</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-テンプレ">
+                <h2>📁 テンプレ</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>開発リクエストテンプレ</td>
+                    <td><a href="開発リクエスト用" target="_blank">開発リクエスト用</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>デザイン依頼</td>
+                    <td><a href="デザイン依頼テンプレ" target="_blank">デザイン依頼テンプレ</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>エラー一覧</td>
+                    <td><a href="エラー依頼テンプレ" target="_blank">エラー依頼テンプレ</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>テンプレ集</td>
+                    <td><a href="依頼テンプレート統合ガイド.pdf" target="_blank">依頼テンプレート統合ガイド.pdf</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>トーナメント企画提案</td>
+                    <td><a href="トーナメント企画提案.pdf" target="_blank">トーナメント企画提案.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-ページ">
+                <h2>📁 ページ</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>公式サイト</td>
+                    <td><a href="https://sloten.io/" target="_blank">https://sloten.io/</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>スロ天USPLP①（AFF用）</td>
+                    <td><a href="https://affiliate2.sloten.io/" target="_blank">https://affiliate2.sloten.io/</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト管理画面</td>
+                    <td><a href="https://asp.sloten.io/login?redirect=/home" target="_blank">https://asp.sloten.io/login?redirect=/home</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-マニュアル">
+                <h2>📁 マニュアル</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>Affiliate業務内容</td>
+                    <td><a href="Affiliate-スロット天国_業務マニュアル (1).pdf" target="_blank">Affiliate-スロット天国_業務マニュアル (1).pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>CS業務内容</td>
+                    <td><a href="CSチーム_業務マニュアル.pdf" target="_blank">CSチーム_業務マニュアル.pdf</a></td>
+                    <td>CS</td>
+                </tr>
+            
+                <tr>
+                    <td>AFF管理シート使用方法</td>
+                    <td><a href="AFF管理シート_使用マニュアル.pdf" target="_blank">AFF管理シート_使用マニュアル.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>プレイヤーチェック管理使用方法</td>
+                    <td><a href="プレイヤーチェック管理ダッシュボード_使用マニュアル.pdf" target="_blank">プレイヤーチェック管理ダッシュボード_使用マニュアル.pdf</a></td>
+                    <td>CS</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト管理画面ガイド</td>
+                    <td><a href="アフィリエイト管理システム操作完全マニュアル.pdf" target="_blank">アフィリエイト管理システム操作完全マニュアル.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>交渉メッセージ例</td>
+                    <td><a href="アフィリエイト交渉" target="_blank">アフィリエイト交渉</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>想定Q&A</td>
+                    <td><a href="AFF想定　Q&A" target="_blank">AFF想定　Q&A</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>法改正稼働AFF</td>
+                    <td><a href="法改正後稼働AFF" target="_blank">法改正後稼働AFF</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>ペイメント業務内容</td>
+                    <td><a href="ペイメント部門_業務マニュアル.pdf" target="_blank">ペイメント部門_業務マニュアル.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト交渉マニュアル</td>
+                    <td><a href="アフィリエイト交渉マニュアル_完全版.pdf" target="_blank">アフィリエイト交渉マニュアル_完全版.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>スロ天操作ガイド</td>
+                    <td><a href="スロット天国_(sloten.io)_利用マニュアル.pdf" target="_blank">スロット天国_(sloten.io)_利用マニュアル.pdf</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>スロ天管理画面ガイド</td>
+                    <td><a href="Sloten管理画面操作マニュアル.pdf" target="_blank">Sloten管理画面操作マニュアル.pdf</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>BIGシート使用方法</td>
+                    <td><a href="BigWin管理シート_使用マニュアル.pdf" target="_blank">BigWin管理シート_使用マニュアル.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>ポイント追加マニュアル</td>
+                    <td><a href="SLOTENシステム完全マニュアル.pdf" target="_blank">SLOTENシステム完全マニュアル.pdf</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>特別報酬の場合</td>
+                    <td><a href="アフィリエイト経験情報収集マニュアル.pdf" target="_blank">アフィリエイト経験情報収集マニュアル.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>PayPayマニュアル</td>
+                    <td><a href="PayPay決済システム_完全マニュアル.pdf" target="_blank">PayPay決済システム_完全マニュアル.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト制度</td>
+                    <td><a href="アフィリエイト制度_活用マニュアル.pdf" target="_blank">アフィリエイト制度_活用マニュアル.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>OKJへの振込手順</td>
+                    <td><a href="OKJ銀行振込マニュアル_-_安全な入金のための完全ガイド.pdf" target="_blank">OKJ銀行振込マニュアル_-_安全な入金のための完全ガイド.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイト交渉マニュアル</td>
+                    <td><a href="アフィリエイト交渉・活用マニュアル統合版.pdf" target="_blank">アフィリエイト交渉・活用マニュアル統合版.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>セトルルール</td>
+                    <td><a href="セトルルール" target="_blank">セトルルール</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>入金フロー</td>
+                    <td><a href="入金フローまとめ（完全版）.pdf" target="_blank">入金フローまとめ（完全版）.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>EC発行方法</td>
+                    <td><a href="EC決済発行方法マニュアル.pdf" target="_blank">EC決済発行方法マニュアル.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>AFFトークスクリプト</td>
+                    <td><a href="アフィリエイト営業トークスクリプト_マニュアル (2).pdf" target="_blank">アフィリエイト営業トークスクリプト_マニュアル (2).pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>ポイントBO</td>
+                    <td><a href="https://add.sloten.io/" target="_blank">https://add.sloten.io/</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>オペレーション業務内容</td>
+                    <td><a href="オペレーション部門_業務マニュアル.pdf" target="_blank">オペレーション部門_業務マニュアル.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>入出金</td>
+                    <td><a href="スロ天_入出金の流れ（まとめ）.pdf" target="_blank">スロ天_入出金の流れ（まとめ）.pdf</a></td>
+                    <td>ペイメント</td>
+                </tr>
+            
+                <tr>
+                    <td>SocialDog使用マニュアル</td>
+                    <td><a href="SocialDog_徹底活用マニュアル.pdf" target="_blank">SocialDog_徹底活用マニュアル.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>プロモ作成例</td>
+                    <td><a href="ボーナス作成の実践例.pdf" target="_blank">ボーナス作成の実践例.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>メルマガシート使用方法</td>
+                    <td><a href="メルマガ管理ダッシュボード_使用マニュアル.pdf" target="_blank">メルマガ管理ダッシュボード_使用マニュアル.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>ゲーミング未経験用マニュアル</td>
+                    <td><a href="ゲーミングアフィリエイト参入マニュアル (1).pdf" target="_blank">ゲーミングアフィリエイト参入マニュアル (1).pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>トーナメントシート使用方法</td>
+                    <td><a href="トーナメント管理ダッシュボード_使用マニュアル.pdf" target="_blank">トーナメント管理ダッシュボード_使用マニュアル.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>ゲーミング未経験用マニュアル</td>
+                    <td><a href="ゲーミング未経験者" target="_blank">ゲーミング未経験者</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>ゲーミング経験者用マニュアル</td>
+                    <td><a href="ゲーミングアフィリエイトSNSマニュアル.pdf" target="_blank">ゲーミングアフィリエイトSNSマニュアル.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>SMS-LP1計測方法</td>
+                    <td><a href="SMS-LP①計測使用方法" target="_blank">SMS-LP①計測使用方法</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>ゲーミング経験者用マニュアル</td>
+                    <td><a href="ゲーミング経験者" target="_blank">ゲーミング経験者</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>SMS-LP1計測方法</td>
+                    <td><a href="SMS-LP①計測_使用マニュアル.pdf" target="_blank">SMS-LP①計測_使用マニュアル.pdf</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>初心者用AFFマニュアル</td>
+                    <td><a href="初心者向けアフィリエイト副業マニュアル.pdf" target="_blank">初心者向けアフィリエイト副業マニュアル.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>Laffic番号別送信方法</td>
+                    <td><a href="Laffic番号別送信方法" target="_blank">Laffic番号別送信方法</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                <tr>
+                    <td>初心者用AFFマニュアル</td>
+                    <td><a href="初心者歓迎！スマホで始めるアフィリエイト副業マニュアル_br_対象：アフィリエイト未経験者.pdf" target="_blank">初心者歓迎！スマホで始めるアフィリエイト副業マニュアル_br_対象：アフィリエイト未経験者.pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>VIP部署業務内容</td>
+                    <td><a href="VIP-スロット天国_業務マニュアル.pdf" target="_blank">VIP-スロット天国_業務マニュアル.pdf</a></td>
+                    <td>VIP</td>
+                </tr>
+            
+                <tr>
+                    <td>アップセルトークスクリプト</td>
+                    <td><a href="目的別アップセルトークスクリプト（スロ天_完全版）.pdf" target="_blank">目的別アップセルトークスクリプト（スロ天_完全版）.pdf</a></td>
+                    <td>VIP</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-リスト">
+                <h2>📁 リスト</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>競馬インフルエンサーリスト</td>
+                    <td><a href="競馬系インフルエンサーデータベース_60名" target="_blank">競馬系インフルエンサーデータベース_60名</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>競艇インフルエンサーリスト</td>
+                    <td><a href="競艇系インフルエンサーデータベース_50名" target="_blank">競艇系インフルエンサーデータベース_50名</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>ポーカーインフルエンサー</td>
+                    <td><a href="ポーカーインフルエンサー一覧" target="_blank">ポーカーインフルエンサー一覧</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>宝くじインフルエンサーリスト</td>
+                    <td><a href="宝くじインフルエンサー" target="_blank">宝くじインフルエンサー</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>パチンコインフルエンサーリスト</td>
+                    <td><a href="パチンコ・パチスロインフルエンサー一覧" target="_blank">パチンコ・パチスロインフルエンサー一覧</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>麻雀インフルエンサー</td>
+                    <td><a href="麻雀インフルエンサー一覧" target="_blank">麻雀インフルエンサー一覧</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>カジノインフルエンサー</td>
+                    <td><a href="カジノインフルエンサー一覧" target="_blank">カジノインフルエンサー一覧</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>FXインフルエンサー</td>
+                    <td><a href="FX系インフルエンサーデータベース" target="_blank">FX系インフルエンサーデータベース</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>バイナリーインフルエンサー</td>
+                    <td><a href="バイナリーオプション系インフルエンサーデータベース" target="_blank">バイナリーオプション系インフルエンサーデータベース</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>仮想通貨インフルエンサー</td>
+                    <td><a href="仮想通貨系インフルエンサーデータベース" target="_blank">仮想通貨系インフルエンサーデータベース</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-依頼">
+                <h2>📁 依頼</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>宝くじシステム概要</td>
+                    <td><a href="宝くじジャックポットシステム概要.pdf" target="_blank">宝くじジャックポットシステム概要.pdf</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-案">
+                <h2>📁 案</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>スロ天ガチャ</td>
+                    <td><a href="https://lp.diamond-secret.club/Slotengacha/" target="_blank">https://lp.diamond-secret.club/Slotengacha/</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>スロ天ルーレット</td>
+                    <td><a href="https://lp.diamond-secret.club/Slotenroulet/" target="_blank">https://lp.diamond-secret.club/Slotenroulet/</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>イメージ図</td>
+                    <td><a href="リベート図.png" target="_blank">リベート図.png</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>VIPテーブル</td>
+                    <td><a href="VIPテーブル" target="_blank">VIPテーブル</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイトテーブル</td>
+                    <td><a href="アフィリエイトテーブル" target="_blank">アフィリエイトテーブル</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>一般規約</td>
+                    <td><a href="スロット天国 一般利用規約 (ドラフト)" target="_blank">スロット天国 一般利用規約 (ドラフト)</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>プロモ規約</td>
+                    <td><a href="スロット天国 プロモーション利用規約 (ドラフト)" target="_blank">スロット天国 プロモーション利用規約 (ドラフト)</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>プライバシーポリシー</td>
+                    <td><a href="スロ天　プライバシーポリシー（ドラフト）" target="_blank">スロ天　プライバシーポリシー（ドラフト）</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>責任あるゲーミング</td>
+                    <td><a href="スロ天　責任あるゲーミング（ドラフト）" target="_blank">スロ天　責任あるゲーミング（ドラフト）</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>SNS運用資料</td>
+                    <td><a href="SNS運用方法(スロット天国)" target="_blank">SNS運用方法(スロット天国)</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>公式SNS投稿スケジュールスロット天国</td>
+                    <td><a href="公式SNS投稿スケジュールスロット天国" target="_blank">公式SNS投稿スケジュールスロット天国</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>藤井さんから共有があったSNS管理シート</td>
+                    <td><a href="スロ天SNS管理表" target="_blank">スロ天SNS管理表</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>ボーナス期待値計算ツール</td>
+                    <td><a href="ボーナス期待値計算ツール" target="_blank">ボーナス期待値計算ツール</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>SLOTEN　スロテン　ＱＡ</td>
+                    <td><a href="SLOTEN　スロテン　ＱＡ" target="_blank">SLOTEN　スロテン　ＱＡ</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>スロ天LP①計測ツール入りテスト</td>
+                    <td><a href="https://lp.diamond-secret.club/SLOTENTEST/" target="_blank">https://lp.diamond-secret.club/SLOTENTEST/</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>ドリームポットLP</td>
+                    <td><a href="https://lp.diamond-secret.club/slotentakarakuji/" target="_blank">https://lp.diamond-secret.club/slotentakarakuji/</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>ドリームポットマイページ</td>
+                    <td><a href="https://lp.diamond-secret.club/takarakuzimypage/" target="_blank">https://lp.diamond-secret.club/takarakuzimypage/</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>コール入力システム</td>
+                    <td><a href="https://script.google.com/macros/s/AKfycbzi6_9-f5aIk1pKxwsQvH-CZ26wLs7GEruchrCIppiiXxRzIwRmgTIcGgSE0PctoksO/exec" target="_blank">https://script.google.com/macros/s/AKfycbzi6_9-f5aIk1pKxwsQvH-CZ26wLs7GEruchrCIppiiXxRzIwRmgTIcGgSE0PctoksO/exec</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>コールシステムadmin</td>
+                    <td><a href="https://script.google.com/macros/s/AKfycbzi6_9-f5aIk1pKxwsQvH-CZ26wLs7GEruchrCIppiiXxRzIwRmgTIcGgSE0PctoksO/exec?page=admin" target="_blank">https://script.google.com/macros/s/AKfycbzi6_9-f5aIk1pKxwsQvH-CZ26wLs7GEruchrCIppiiXxRzIwRmgTIcGgSE0PctoksO/exec?page=admin</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>ボーナス期待値計算ツール  複製してお使いください</td>
+                    <td><a href="ボーナス期待値計算ツール  複製してお使いください" target="_blank">ボーナス期待値計算ツール  複製してお使いください</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>よくある質問</td>
+                    <td><a href="スロ天　よくある質問" target="_blank">スロ天　よくある質問</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-管理シート">
+                <h2>📁 管理シート</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>シフト</td>
+                    <td><a href="スタッフシフト表_完全版" target="_blank">スタッフシフト表_完全版</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>DRIVE</td>
+                    <td><a href="素材" target="_blank">素材</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>管理シート</td>
+                    <td><a href="https://lp.diamond-secret.club/reports/secure/click_report_SLOTENTEST.php" target="_blank">https://lp.diamond-secret.club/reports/secure/click_report_SLOTENTEST.php</a></td>
+                    <td>オペ</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-調査">
+                <h2>📁 調査</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>他社報酬調査結果</td>
+                    <td><a href="カジノアフィリエイト条件調査_分析レポート.pdf" target="_blank">カジノアフィリエイト条件調査_分析レポート.pdf</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>他社リベート調査結果</td>
+                    <td><a href="他社リベート調査結果" target="_blank">他社リベート調査結果</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>PSP比較</td>
+                    <td><a href="PSP比較" target="_blank">PSP比較</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>他社アフィリエイト報酬形態</td>
+                    <td><a href="カジノアフィリエイト報酬体系他社調査結果" target="_blank">カジノアフィリエイト報酬体系他社調査結果</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="category-section" id="category-資料">
+                <h2>📁 資料</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>URL</th>
+                            <th>部署</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>Lottoジャックポット</td>
+                    <td><a href="ロト抽選ジャックポット機能｜スタッフ説明資料.pdf" target="_blank">ロト抽選ジャックポット機能｜スタッフ説明資料.pdf</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイター向け営業資料</td>
+                    <td><a href="スロット天国_アフィリエイトプログラム (3).pdf" target="_blank">スロット天国_アフィリエイトプログラム (3).pdf</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                <tr>
+                    <td>ドリームポット説明</td>
+                    <td><a href="https://lottojackpot-jkhjm2sm.manus.space" target="_blank">https://lottojackpot-jkhjm2sm.manus.space</a></td>
+                    <td>全部署</td>
+                </tr>
+            
+                <tr>
+                    <td>チャットBOT内容</td>
+                    <td><a href="スロット天国チャットbot_登録ガイド.pdf" target="_blank">スロット天国チャットbot_登録ガイド.pdf</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>プロバイダーデータ項目</td>
+                    <td><a href="プロバイダーからもらえる項目一覧" target="_blank">プロバイダーからもらえる項目一覧</a></td>
+                    <td>admin</td>
+                </tr>
+            
+                <tr>
+                    <td>アフィリエイトとは</td>
+                    <td><a href="アフィリエイトとは" target="_blank">アフィリエイトとは</a></td>
+                    <td>AFF</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
     </div>
     
     <script>
         // 検索機能
         const searchInput = document.getElementById('searchInput');
-        const table = document.getElementById('dataTable');
-        const tbody = table.querySelector('tbody');
-        const noResults = document.getElementById('noResults');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const categorySections = document.querySelectorAll('.category-section');
         
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const rows = tbody.querySelectorAll('tr');
+        let currentCategory = 'all';
+        
+        // カテゴリフィルタ
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                filterContent();
+            });
+        });
+        
+        // 検索機能
+        searchInput.addEventListener('input', filterContent);
+        
+        function filterContent() {
+            const searchTerm = searchInput.value.toLowerCase();
             let visibleCount = 0;
             
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    row.style.display = '';
-                    visibleCount++;
-                } else {
-                    row.style.display = 'none';
+            categorySections.forEach(section => {
+                const categoryId = section.id.replace('category-', '');
+                const rows = section.querySelectorAll('tbody tr');
+                let sectionHasVisibleRows = false;
+                
+                // カテゴリフィルタ
+                if (currentCategory !== 'all' && categoryId !== currentCategory) {
+                    section.style.display = 'none';
+                    return;
                 }
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                        sectionHasVisibleRows = true;
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                section.style.display = sectionHasVisibleRows ? 'block' : 'none';
             });
             
-            // 検索結果がない場合
+            // 結果なしメッセージ
+            const content = document.getElementById('content');
+            let noResults = content.querySelector('.no-results');
+            
             if (visibleCount === 0) {
-                table.style.display = 'none';
-                noResults.style.display = 'block';
+                if (!noResults) {
+                    noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.textContent = '😔 該当する項目が見つかりませんでした';
+                    content.appendChild(noResults);
+                }
             } else {
-                table.style.display = 'table';
-                noResults.style.display = 'none';
+                if (noResults) {
+                    noResults.remove();
+                }
             }
-        });
+        }
     </script>
 </body>
 </html>
