@@ -23,6 +23,25 @@ def fetch_sheet_data():
         print(f"Error fetching data: {e}")
         return None
 
+def get_additional_items():
+    """追加のハードコードされたアイテムを返す"""
+    return [
+        {'名称': 'DSC管理画面', 'URL': 'https://admin.diamond-secret.club/', 'ジャンル': 'BO', '部署': '全部署'},
+        {'名称': 'ヘブンズショット解説', 'URL': 'https://heavensshotkaisetsu.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': 'ドリームポット', 'URL': 'https://dreampot.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': '友達紹介', 'URL': 'https://friend1.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': '入金・出金', 'URL': 'https://pay.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': 'パチンコ', 'URL': 'https://pachinko.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': 'ドリームポット別ver', 'URL': 'https://a-dreampot.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': 'カスタムヘブンズショット', 'URL': 'https://customheavensshot.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': 'ヘブンズロード', 'URL': 'https://heavensroad.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': '節分プロモ', 'URL': 'https://setsubun.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': 'バレンタインプロモ', 'URL': 'https://valentines-day.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': '11111プロモ', 'URL': 'https://11111.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': '100キャッシュバック', 'URL': 'https://100cashback.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+        {'名称': '宝くじプロモ', 'URL': 'https://lottery-promo.slomanga.com/', 'ジャンル': 'ページ', '部署': 'オペ'},
+    ]
+
 def parse_csv_data(csv_data):
     """CSVデータを解析して縦一列のデータに変換"""
     reader = csv.reader(StringIO(csv_data))
@@ -475,6 +494,11 @@ def main():
     
     print("データを解析中...")
     items = parse_csv_data(csv_data)
+    
+    # 追加のハードコードされたアイテムを追加
+    additional_items = get_additional_items()
+    items.extend(additional_items)
+    print(f"✓ 追加で{len(additional_items)}件のアイテムを追加しました")
     
     if not items:
         print("❌ データの解析に失敗しました")
